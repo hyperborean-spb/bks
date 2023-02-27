@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: drone_dispatch_controller
+  datasource:
+    initialization-mode: always
+    url: jdbc:h2:mem:musala
+#    url: jdbc:h2:file:/musala-h2/data
+    driver-class-name: org.h2.Driver
+    username: admin
+    password: password
+  h2:
+    console:
+      enabled: true
+  liquibase:
+    enabled: false
+    change-log: classpath:/db/changelog/db.changelog-master.yml
+#    default_schema: drones
+    database-change-log-lock-table: drones_databasechangeloglock
+    database-change-log-table: drones_databasechangelog
+
+scheduler:
+  interval: 60000
+
+logging:
+  file:
+    name: logs/drone_capacity.log
