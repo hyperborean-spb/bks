@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "2767c7ff-0978-4cf1-a788-e478286952db",
+		"name": "musala",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get drones by state",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/api/drone/getbystate/:state",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"drone",
+						"getbystate",
+						":state"
+					],
+					"variable": [
+						{
+							"key": "state",
+							"value": "IDLE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all drones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/api/drone/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"drone",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get medications for the drone",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/api/drone/getmedications/:serial",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"drone",
+						"getmedications",
+						":serial"
+					],
+					"variable": [
+						{
+							"key": "serial",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get capacity for the drone",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/api/drone/getcapacitybyserial/:serial",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"drone",
+						"getcapacitybyserial",
+						":serial"
+					],
+					"variable": [
+						{
+							"key": "serial",
+							"value": "AAA211"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get available",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/api/drone/getavailable",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"drone",
+						"getavailable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register drone",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"serialNumber\": \"DRONE002\",\n\t\"capacity\": 60,\n\t\"model\": \"MIDDLEWEIGHT\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/drone/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"drone",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register medication",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"code\": \"MEDICATION002\",\n\t\"name\": \"Clemastine\",\n\t\"weight\": 50\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/medication/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"medication",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "load drone with medication",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"medicationCodes\": [\"MEDICATION001\", \"MEDICATION002\"]\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/drone/loaddrone?droneSerial=drone002",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"drone",
+						"loaddrone"
+					],
+					"query": [
+						{
+							"key": "droneSerial",
+							"value": "drone002"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
