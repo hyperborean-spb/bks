@@ -20,5 +20,5 @@ public class Account {
 
 	@OneToOne  (fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private User user;
+	private Client user;
 }

@@ -1,16 +1,16 @@
 package com.bks.service;
 
-import com.bks.domain.User;
-import com.bks.domain.Account;
+import com.bks.domain.Client;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public interface UserService {
 
-	List<User>  getUsersByName(String name);
+	Page<Client> getUsersByName(int page, int size, String name);
 
-	List<User>  getUsersByBirthdate(LocalDate birthData);
+	Page<Client>  getUsersByBirthdate(int page, int size, LocalDate birthData);
 
-	List<User> getUsers();
+	List<Client> getUsers();
 }

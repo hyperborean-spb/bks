@@ -1,21 +1,20 @@
 package com.bks.repository;
 
-import com.bks.domain.User;
+import com.bks.domain.Client;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<Client, Long> {
 
 /*вероятно, ignore case*/
 
-	List<User> findByNameContainingIgnoreCaseOrderByName(String name);
+	Page<Client> findByNameContainingIgnoreCaseOrderByName(Pageable pageable, String name);
 
-	List<User> findByBirthDateAfterOrderByBirthDate(LocalDate birthData);
+	Page<Client> findByBirthDateAfterOrderByBirthDate(Pageable pageable, LocalDate birthdate);
 
 
 

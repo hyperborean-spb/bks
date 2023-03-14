@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @NoArgsConstructor
-public class User {
+public class Client {
 
 	@Id
 	private Long id;

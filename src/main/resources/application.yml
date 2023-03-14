@@ -27,7 +27,8 @@ spring:
 
   # to always initialize a database using scripts - schema.sql and data.sql
   sql:
-    init.mode: always
+    init:
+      mode: always
 
 logging:
   file:

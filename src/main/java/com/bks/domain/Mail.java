@@ -19,7 +19,7 @@ public class Mail {
 
 	@ManyToOne  (fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private User user;
+	private Client user;
 
 	@Email
 	private  String email;
