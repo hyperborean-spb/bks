@@ -1,7 +1,7 @@
-package com.musala.dronedispatchcontroller.service.dto;
+package com.bks.service.dto;
 
-import com.musala.dronedispatchcontroller.domain.enums.Model;
-import com.musala.dronedispatchcontroller.domain.enums.State;
+import com.bks.domain.enums.Model;
+import com.bks.domain.enums.State;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

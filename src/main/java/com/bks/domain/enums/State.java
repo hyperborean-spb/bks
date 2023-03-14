@@ -1,4 +1,4 @@
-package com.musala.dronedispatchcontroller.domain.enums;
+package com.bks.domain.enums;
 
 public enum State {
 	IDLE,

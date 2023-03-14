@@ -1,7 +1,7 @@
-package com.musala.dronedispatchcontroller.exception;
+package com.bks.exception;
 
+import com.bks.service.dto.ExceptionResponseDto;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import com.musala.dronedispatchcontroller.service.dto.ExceptionResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

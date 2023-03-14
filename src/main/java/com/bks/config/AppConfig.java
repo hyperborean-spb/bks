@@ -1,4 +1,4 @@
-package com.musala.dronedispatchcontroller.config;
+package com.bks.config;
 
 import lombok.Getter;
 import lombok.Setter;

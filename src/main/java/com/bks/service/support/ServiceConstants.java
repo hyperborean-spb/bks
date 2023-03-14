@@ -1,4 +1,4 @@
-package com.musala.dronedispatchcontroller.service.support;
+package com.bks.service.support;
 
 public final class ServiceConstants {
 	public static final String DRONE_SERIAL_NUMBER_NOT_FOUND = "drone_serial_number_not_found";

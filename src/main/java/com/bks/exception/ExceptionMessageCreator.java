@@ -1,4 +1,4 @@
-package com.musala.dronedispatchcontroller.exception;
+package com.bks.exception;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;

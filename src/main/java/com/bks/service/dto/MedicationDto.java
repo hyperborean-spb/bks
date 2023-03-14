@@ -1,6 +1,6 @@
-package com.musala.dronedispatchcontroller.service.dto;
+package com.bks.service.dto;
 
-import com.musala.dronedispatchcontroller.domain.Drone;
+import com.bks.domain.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.validation.constraints.Pattern;
@@ -27,5 +27,5 @@ public class MedicationDto {
 	@Positive
 	private Integer weight;
 
-	private Drone drone;
+	private User drone;
 }

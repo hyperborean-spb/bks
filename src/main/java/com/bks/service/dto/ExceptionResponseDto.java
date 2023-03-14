@@ -1,4 +1,4 @@
-package com.musala.dronedispatchcontroller.service.dto;
+package com.bks.service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

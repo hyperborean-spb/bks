@@ -1,4 +1,4 @@
-package com.musala.dronedispatchcontroller.exception;
+package com.bks.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
