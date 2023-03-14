@@ -1,72 +1,65 @@
-## Drones
+**Структура таблиц БД**
 
-[[_TOC_]]
+| Key type | Column | Type | Unique | Comment |
+| --- | --- | --- | --- | --- |
+| Table: USER |  |  |  |  |
+| PK | ID | BIGINT | True |  |
+|  | NAME | VARCHAR(500) |  |  |
+|  | DATE_OF_BIRTH |  |  | Format: 01.05.1993 |
+|  | PASSWORD | VARCHAR(500) |  | Min length: 8, max 500 |
+| Table: ACCOUNT |  |  |  |  |
+| PK | ID | BIGINT | True |  |
+| FK | USER_ID | BIGINT | True | Link to USER.ID |
+|  | BALANCE | DECIMAL |  | рубли + копейки: в коде – BigDecimal |
+| Table: EMAIL_DATA |  |  |  |  |
+| PK | ID | BIGINT | True |  |
+| FK | USER_ID | BIGINT |  | Link to USER.ID |
+|  | EMAIL | VARCHAR(200) | True |  |
+| Table: PHONE_DATA |  |  |  |  |
+| PK | ID | BIGINT | True |  |
+| FK | USER_ID | BIGINT |  | Link to USER.ID |
+|  | PHONE | VARCHAR(13) | True | format: 79207865432 |
 
----
 
-:scroll: **START**
+**Общие требование к системе:**
 
+1. 3 слоя – API, service, DAO
+2. Будем считать, что в системе только обычные пользователи (не админы и т.д).
+3. Будем считать, что пользователи создаются миграциями (не будем усложнять). Просто считаем, что для обычных пользователей нет операции создания. Для тестов создать напрямую в DAO.
+4. У пользователя может быть более одного PHONE_DATA (должен быть как минимум 1).
+5. У пользователя может быть более одного EMAIL_DATA (должен быть как минимум 1).
+6. У пользователя должен быть быть строго один ACCOUNT.
+7. Начальный BALANCE в ACCOUNT указывается при создании пользователя.
+8. BALANCE в ACCOUNT не может уходить в минус ни при каких операциях.
+9. Валидация входных API данных.
 
-### Introduction
+**Обязательные фичи:**
 
-There is a major new technology that is destined to be a disruptive force in the field of transportation: **the drone**. Just as the mobile phone allowed developing countries to leapfrog older technologies for personal communication, the drone has the potential to leapfrog traditional transportation infrastructure.
+1. CREATE (только для определенных внутри пользователя данных), UPDATE операции для пользователя. Пользователь может менять только собственные данные:
+2. может удалить/сменить/добавить email если он не занят другим пользователям
+3. может удалить/сменить/добавить phone если он не занят другим пользователям
+4. остальное менять не может
+5. Реализовать READ операцию для пользователей. Сделать «поиск пользователей» (искать может любой любого) с фильтрацией по полям ниже и пагинацией (size, page/offset):
+6. Если передана «dateOfBirth», то фильтр записей, где «date_of_birth» больше чем переданный в запросе.
+7. Если передан «phone», то фильтр по 100% сходству.
+8. Если передан «name», то фильтр по like форматом ‘{text-from-request-param}%’
+9. Если передан «email», то фильтр по 100% сходству.
+10. Добавить JWT token (необходимый Claim только USER_ID), механизм получения токена на ваше усмотрение. Имплементировать максимально просто, не стоит усложнять. Аутентификация может быть по email+password, либо по phone+password.
+11. Раз в 30 секунд BALANCE каждого клиента увеличиваются на 10% но не более 207% от начального депозита.
+Например:Было: 100, стало: 110.Было: 110, стало:121.…Окончательное значение: 194.87*
+12. Сделать функционал трансфер денег от одного пользователя к другому.
+Вход: USER_ID (transfer from) – берем у авторизованного из Claim токена, USER_ID (transfer to) из запроса, VALUE (сумма перевода) из запроса.
+То есть у того, кто переводит мы списываем эту сумму, у того, кому переводим – добавляем эту сумму.Считать эту операцию «банковской» (высоко-значимой), сделать ее со всеми нужными валидациями (надо подумать какими) и потоко-защищенной.
 
-Useful drone functions include delivery of small items that are (urgently) needed in locations with difficult access.
+13. Создание нового пользователя должно происходить с помощью принятия сообщения из RabbitMQ
 
----
+**Необязательные фичи (но которые очень хотелось бы видеть, хотя бы в минимальном исполнении):**
 
-### Task description
+1. Добавить swagger (минимальную конфигурацию).
+2. Добавить не бездумное (значимое) логгирование.
+3. Добавить корректное кэширование (например на API и на DAO слой). Имплементация на ваше усмотрение.
 
-We have a fleet of **10 drones**. A drone is capable of carrying devices, other than cameras, and capable of delivering small loads. For our use case **the load is medications**.
+**Тестирование:**
 
-A **Drone** has:
-- serial number (100 characters max);
-- model (Lightweight, Middleweight, Cruiserweight, Heavyweight);
-- weight limit (500gr max);
-- battery capacity (percentage);
-- state (IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING).
+Покрытие unit тестами. Не надо покрывать тестами весь код. Нужно сделать тесты на покрытие функционала трансфера денег через MockMvc и операцию создание пользователя  покрыть через testcontainers
 
-Each **Medication** has: 
-- name (allowed only letters, numbers, ‘-‘, ‘_’);
-- weight;
-- code (allowed only upper case letters, underscore and numbers);
-- image (picture of the medication case).
-
-Develop a service via REST API that allows clients to communicate with the drones (i.e. **dispatch controller**). The specific communicaiton with the drone is outside the scope of this task. 
-
-The service should allow:
-- registering a drone;
-- loading a drone with medication items;
-- checking loaded medication items for a given drone; 
-- checking available drones for loading;
-- check drone battery level for a given drone;
-
-> Feel free to make assumptions for the design approach. 
-
----
-
-### Requirements
-
-While implementing your solution **please take care of the following requirements**: 
-
-#### Functional requirements
-
-- There is no need for UI;
-- Prevent the drone from being loaded with more weight that it can carry;
-- Prevent the drone from being in LOADING state if the battery level is **below 25%**;
-- Introduce a periodic task to check drones battery levels and create history/audit event log for this.
-
----
-
-#### Non-functional requirements
-
-- Input/output data must be in JSON format;
-- Your project must be buildable and runnable;
-- Your project must have a README file with build/run/test instructions (use DB that can be run locally, e.g. in-memory, via container);
-- Required data must be preloaded in the database.
-- JUnit tests are optional but advisable (if you have time);
-- Advice: Show us how you work through your commit history.
-
----
-
-:scroll: **END** 

@@ -1,8 +1,7 @@
-INSERT INTO DRONE (serial_number, capacity, model, state, weight) VALUES('DRONE001', 15, 'LIGHTWEIGHT', 'IDLE', 300);
-INSERT INTO DRONE (serial_number, capacity, model, state, weight) VALUES('DRONE002', 60, 'LIGHTWEIGHT', 'IDLE', 300);
-INSERT INTO DRONE (serial_number, capacity, model, state, weight) VALUES('DRONE003', 42, 'LIGHTWEIGHT', 'LOADING', 300);
-INSERT INTO DRONE (serial_number, capacity, model, state, weight) VALUES('DRONE004', 42, 'LIGHTWEIGHT', 'IDLE', 300);
+INSERT INTO user (date_of_birth, name, password) VALUES(TO_DATE('01.01.2000', 'DD.MM.YYYY)', 'Ivan', 'Ivanov');
+INSERT INTO user (date_of_birth, name, password) VALUES(TO_DATE('02.02.2000', 'DD.MM.YYYY'), 'Pavel', 'Pavlov');
+INSERT INTO user (date_of_birth, name, password) VALUES(TO_DATE('03.03.2000', 'DD.MM.YYYY'), 'Timofey', 'Timofeyev');
 
-INSERT INTO MEDICATION (code, name, weight) VALUES('MEDICATION001', 'Melanotan', 80);
-INSERT INTO MEDICATION (code, name, weight) VALUES('MEDICATION002', 'Clemastine', 50);
-INSERT INTO MEDICATION (code, name, weight) VALUES('MEDICATION003', 'Ibuprofen', 110);
+INSERT INTO account (user_id, balance) VALUES(1, 12.26);
+INSERT INTO account (user_id, balance) VALUES(2, 14.35);
+INSERT INTO account (user_id, balance) VALUES(3, 33.60);

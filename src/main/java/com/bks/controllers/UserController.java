@@ -2,9 +2,7 @@ package com.bks.controllers;
 
 import com.bks.domain.Account;
 import com.bks.domain.User;
-import com.bks.domain.enums.State;
 import com.bks.service.UserService;
-import com.bks.service.dto.DroneDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

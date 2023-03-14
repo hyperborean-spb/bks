@@ -1,10 +1,10 @@
-package com.musala.dronedispatchcontroller;
+package com.bks;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DroneDispatchControllerApplicationTests {
+class UserDispatchControllerApplicationTests {
 
 	@Test
 	void contextLoads() {
