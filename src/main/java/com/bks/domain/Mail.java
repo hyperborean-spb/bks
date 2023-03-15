@@ -18,9 +18,9 @@ public class Mail {
 	private Long id;
 
 	@ManyToOne  (fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private Client user;
+	@JoinColumn(name = "client_id")
+	private Client client;
 
 	@Email
-	private  String email;
+	private  String mail;
 }

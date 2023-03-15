@@ -1,6 +1,6 @@
 package com.bks.controllers;
 
-import com.bks.service.UserService;
+import com.bks.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
 
-	private final UserService userService;
+	private final ClientService userService;
 }

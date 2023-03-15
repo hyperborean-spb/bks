@@ -35,7 +35,7 @@ public class AppConfig {
 
 	@Bean
 	public Locale locale() {
-		return new Locale("en");
+		return new Locale("ru");
 	}
 
 	@Bean

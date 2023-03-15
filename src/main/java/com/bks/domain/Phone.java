@@ -18,8 +18,8 @@ public class Phone {
 	private Long id;
 
 	@ManyToOne  (fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private Client user;
+	@JoinColumn(name = "client_id")
+	private Client client;
 
 	@Pattern(regexp = "7\\d{10}",
 	message = "eleven digits only starting with seven")
