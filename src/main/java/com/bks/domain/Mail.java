@@ -15,6 +15,7 @@ import javax.validation.constraints.Email;
 public class Mail {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@ManyToOne  (fetch = FetchType.EAGER)

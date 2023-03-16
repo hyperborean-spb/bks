@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 public class Account {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	private BigDecimal balance;

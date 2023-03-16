@@ -1,15 +1,17 @@
 package com.bks.controllers;
 
 import com.bks.domain.Client;
+import com.bks.dto.ClientDto;
 import com.bks.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.List;
 
 @Validated
 @RestController
@@ -30,8 +32,14 @@ public class ClientController {
 		return ResponseEntity.ok().body(clientService.getClientByMail(mail));
 	}
 
-	@GetMapping("/getbybirthtdate")
-	public ResponseEntity<Page<Client>> getClientByBirthdate(@RequestParam int page, @RequestParam int size, @RequestParam  LocalDate birthdate) {
+	@GetMapping("/getbybirthdate")
+	public ResponseEntity<Page<Client>> getClientByBirthdate(@RequestParam int page, @RequestParam int size, @RequestParam  @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate birthdate) {
 		return ResponseEntity.ok().body(clientService.getClientsByBirthdate(page,  size, birthdate));
+	}
+
+
+	@PostMapping("/registerclient")
+	public ResponseEntity<Client> registerClient(@RequestBody @Valid ClientDto clientDto) {
+		return ResponseEntity.ok(clientService.registerClient(clientDto));
 	}
 }

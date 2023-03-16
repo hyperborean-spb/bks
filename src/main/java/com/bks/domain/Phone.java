@@ -15,6 +15,7 @@ import javax.validation.constraints.Pattern;
 public class Phone {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@ManyToOne  (fetch = FetchType.EAGER)

@@ -3,6 +3,7 @@ package com.bks.service;
 import com.bks.domain.Client;
 import com.bks.domain.Mail;
 import com.bks.domain.Phone;
+import com.bks.dto.ClientDto;
 import com.bks.exception.ClientException;
 import com.bks.exception.ExceptionMessageCreator;
 import com.bks.repository.MailRepository;
@@ -23,12 +24,12 @@ import static com.bks.service.support.ServiceConstants.MAIL_NOT_FOUND;
 import static com.bks.service.support.ServiceConstants.PHONE_NOT_FOUND;
 
 @Service
-@Transactional
+//@Transactional
 @RequiredArgsConstructor
 @Slf4j
 public class ClientServiceImpl implements ClientService {
 
-	private final ClientRepository userRepository;
+	private final ClientRepository clientRepository;
 	private final PhoneRepository phoneRepository;
 	private final MailRepository mailRepository;
 	private final ExceptionMessageCreator messageCreator;
@@ -39,13 +40,13 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public Page<Client> getClientsByName(int page, int size, String name) {
 		Pageable pageable = PageRequest.of(page, size);
-		return userRepository.findByNameContainingIgnoreCaseOrderByName(pageable, name);
+		return clientRepository.findByNameContainingIgnoreCaseOrderByName(pageable, name);
 	};
 
 	@Override
 	public Page<Client>  getClientsByBirthdate(int page, int size, LocalDate birthdate) {
-		Pageable pageable = PageRequest.of(0, 10);
-		return userRepository.findByBirthDateAfterOrderByBirthDate(pageable, birthdate);
+		Pageable pageable = PageRequest.of(page, size);
+		return clientRepository.findByBirthdateAfterOrderByBirthdate(pageable, birthdate);
 	};
 
 	@Override
@@ -55,9 +56,15 @@ public class ClientServiceImpl implements ClientService {
 	};
 
 	@Override
-	public Client  getClientByMail(String mail){
+	public Client getClientByMail(String mail) {
 		Mail m = mailRepository.getFirstByMail(mail).orElseThrow(() -> ClientException.of(messageCreator.createMessage(MAIL_NOT_FOUND)));
 		return m.getClient();
+	}
 
-	};
+
+	@Override
+	public Client registerClient(ClientDto clientDto) {
+		Client client = modelMapper.map(clientDto, Client.class);
+		return clientRepository.saveAndFlush(client);
+	}
 }

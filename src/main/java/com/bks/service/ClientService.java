@@ -1,6 +1,7 @@
 package com.bks.service;
 
 import com.bks.domain.Client;
+import com.bks.dto.ClientDto;
 import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
@@ -15,4 +16,6 @@ public interface ClientService {
 	Client getClientByPhone(String phone);
 
 	Client  getClientByMail(String mail);
+
+	Client registerClient(ClientDto clientDto);
 }
