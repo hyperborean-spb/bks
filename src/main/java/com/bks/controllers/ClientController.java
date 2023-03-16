@@ -27,6 +27,11 @@ public class ClientController {
 		return ResponseEntity.ok().body(clientService.getClientByPhone(phone));
 	}
 
+	@GetMapping("/getbyname")
+	public ResponseEntity<Page<Client>> getClientByName(@RequestParam int page, @RequestParam int size, @RequestParam  String name) {
+		return ResponseEntity.ok().body(clientService.getClientsByName(page,  size,  name));
+	}
+
 	@GetMapping("/getbymail/{mail}")
 	public ResponseEntity<Client> getClientByMail(@PathVariable String mail) {
 		return ResponseEntity.ok().body(clientService.getClientByMail(mail));
