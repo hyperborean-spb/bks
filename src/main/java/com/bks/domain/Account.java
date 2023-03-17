@@ -20,6 +20,6 @@ public class Account {
 	private BigDecimal balance;
 
 	@OneToOne  (fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private Client user;
+	@JoinColumn(name = "client_id")
+	private Client client;
 }

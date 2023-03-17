@@ -8,5 +8,5 @@ public interface AccountService {
 
 	List<Account> getAccounts();
 
-	//void incrementBalance();
+	void incrementBalance();
 }

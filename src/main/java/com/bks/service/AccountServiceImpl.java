@@ -31,7 +31,7 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.findAll();
 	};
 
-	/*@Scheduled(fixedRateString = "${scheduler.interval}")
+	@Scheduled(fixedRateString = "${scheduler.interval}")
 	@Async
 	@Override
 	public void incrementBalance() {
@@ -41,10 +41,10 @@ public class AccountServiceImpl implements AccountService {
 			if (account.getBalance().compareTo(accounts.get(accounts.indexOf(account)).getBalance().multiply(balanceRaiseLimit)) < 0)
 			{
 				account.setBalance(account.getBalance().multiply(new BigDecimal(1.1)));
-				log.info("client ID - {}, current  balance - {},  changed at - {}", account.getId(), account.getBalance().toPlainString(), formatEventDate());
+				log.info("client ID - {}, current  balance - {},  changed at - {}", account.getClient().getId(), account.getBalance().toPlainString(), formatEventDate());
 			}
 		});
-	}*/
+	}
 
 	private  String formatEventDate(){
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm");
