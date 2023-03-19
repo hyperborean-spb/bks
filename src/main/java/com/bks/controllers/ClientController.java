@@ -54,4 +54,10 @@ public class ClientController {
 	public ResponseEntity<Client> registerClient(@RequestBody @Valid ClientDto clientDto) {
 		return ResponseEntity.ok(clientService.registerClient(clientDto));
 	}
+
+	@PutMapping("/moneytransfer")
+	@Operation(summary = "Трансфер средств между клиентами")
+	public ResponseEntity<Boolean> moneyTransfer(@RequestParam long sourceId, @RequestParam long recipientId, @RequestParam  float amount) {
+		return ResponseEntity.ok(clientService.moneyTransfer(sourceId, recipientId, amount));
+	}
 }

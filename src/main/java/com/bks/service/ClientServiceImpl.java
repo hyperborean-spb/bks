@@ -1,11 +1,13 @@
 package com.bks.service;
 
+import com.bks.domain.Account;
 import com.bks.domain.Client;
 import com.bks.domain.Mail;
 import com.bks.domain.Phone;
 import com.bks.dto.ClientDto;
 import com.bks.exception.ClientException;
 import com.bks.exception.ExceptionMessageCreator;
+import com.bks.repository.AccountRepository;
 import com.bks.repository.MailRepository;
 import com.bks.repository.PhoneRepository;
 import com.bks.repository.ClientRepository;
@@ -18,10 +20,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
-import static com.bks.service.support.ServiceConstants.MAIL_NOT_FOUND;
-import static com.bks.service.support.ServiceConstants.PHONE_NOT_FOUND;
+import static com.bks.service.support.ServiceConstants.*;
 
 @Service
 //@Transactional
@@ -32,6 +35,7 @@ public class ClientServiceImpl implements ClientService {
 	private final ClientRepository clientRepository;
 	private final PhoneRepository phoneRepository;
 	private final MailRepository mailRepository;
+	private final AccountRepository accountRepository;
 	private final ExceptionMessageCreator messageCreator;
 	private final ModelMapper modelMapper;
 
@@ -67,4 +71,36 @@ public class ClientServiceImpl implements ClientService {
 		Client client = modelMapper.map(clientDto, Client.class);
 		return clientRepository.saveAndFlush(client);
 	}
+
+	@Transactional
+	@Override
+	public boolean moneyTransfer(long senderId, long recipientId, float amount){
+		boolean success;
+		Account sender = null;
+		Account recipient = null;
+		BigDecimal amountAsBigDecimal = new BigDecimal(amount);
+		List<Account> senderAccounts = accountRepository.getAccountByClientId(senderId);
+		List<Account> recipientAccounts = accountRepository.getAccountByClientId(recipientId);
+		if (!senderAccounts.isEmpty()) {
+			sender = senderAccounts.get(0);
+		} else {
+			throw ClientException.of(messageCreator.createMessage(SENDER_ID_ACCOUNT_NOT_FOUND));
+		}
+
+		if (!senderAccounts.isEmpty()) {
+			recipient = recipientAccounts.get(0);
+		} else {
+			throw ClientException.of(messageCreator.createMessage(RECIPIENT_ID_ACCOUNT_NOT_FOUND));
+		}
+
+		if (sender.getBalance().compareTo(amountAsBigDecimal) >= 0 ) {
+			sender.setBalance(sender.getBalance().subtract(amountAsBigDecimal));
+			recipient.setBalance(recipient.getBalance().add(amountAsBigDecimal));
+			success = true;
+		} else {
+			throw ClientException.of(messageCreator.createMessage(NOT_ENOUGH_FUNDS));
+		}
+
+		return success;
+	};
 }

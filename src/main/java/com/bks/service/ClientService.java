@@ -18,4 +18,6 @@ public interface ClientService {
 	Client  getClientByMail(String mail);
 
 	Client registerClient(ClientDto clientDto);
+
+	boolean moneyTransfer(long sourceId, long recipientId, float amount);
 }
