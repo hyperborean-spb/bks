@@ -72,6 +72,7 @@ public class ClientServiceImpl implements ClientService {
 		return clientRepository.saveAndFlush(client);
 	}
 
+	/* какой УРОВЕНЬ ИЗОЛЯЦИИ выставить?*/
 	@Transactional
 	@Override
 	public boolean moneyTransfer(long senderId, long recipientId, float amount){

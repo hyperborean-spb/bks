@@ -38,7 +38,7 @@ public class ClientController {
 	}
 
 	@GetMapping("/getbymail/{mail}")
-	@Operation(summary = "Поиск по адресу e-почты")
+	@Operation(summary = "Поиск по почтовому адресу ")
 	public ResponseEntity<Client> getClientByMail(@PathVariable String mail) {
 		return ResponseEntity.ok().body(clientService.getClientByMail(mail));
 	}
