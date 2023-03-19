@@ -25,6 +25,7 @@ import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 @EnableAsync
 @ConditionalOnProperty(name = "scheduler.enabled", matchIfMissing = true)
 public class AppConfig {
+
 	@Bean
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();

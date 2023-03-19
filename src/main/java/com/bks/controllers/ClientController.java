@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -52,7 +53,7 @@ public class ClientController {
 	@PostMapping("/registerclient")
 	@Operation(summary = "Регистрация нового клиента")
 	public ResponseEntity<Client> registerClient(@RequestBody @Valid ClientDto clientDto) {
-		return ResponseEntity.ok(clientService.registerClient(clientDto));
+		return new ResponseEntity<>(clientService.registerClient(clientDto), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/moneytransfer")

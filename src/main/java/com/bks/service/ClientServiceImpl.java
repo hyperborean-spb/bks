@@ -75,32 +75,32 @@ public class ClientServiceImpl implements ClientService {
 	@Transactional
 	@Override
 	public boolean moneyTransfer(long senderId, long recipientId, float amount){
-		boolean success;
-		Account sender = null;
-		Account recipient = null;
+		Account sender ;
+		Account recipient;
 		BigDecimal amountAsBigDecimal = new BigDecimal(amount);
 		List<Account> senderAccounts = accountRepository.getAccountByClientId(senderId);
 		List<Account> recipientAccounts = accountRepository.getAccountByClientId(recipientId);
 		if (!senderAccounts.isEmpty()) {
 			sender = senderAccounts.get(0);
 		} else {
+			log.info("senderAccounts is empty: " +  (senderAccounts.isEmpty() ?"true": "false"));
+			log.info(messageCreator.createMessage(SENDER_ID_ACCOUNT_NOT_FOUND));
 			throw ClientException.of(messageCreator.createMessage(SENDER_ID_ACCOUNT_NOT_FOUND));
 		}
 
 		if (!senderAccounts.isEmpty()) {
 			recipient = recipientAccounts.get(0);
 		} else {
+			log.info("recipientAccounts is empty: " +  (recipientAccounts.isEmpty() ?"true": "false"));
 			throw ClientException.of(messageCreator.createMessage(RECIPIENT_ID_ACCOUNT_NOT_FOUND));
 		}
 
 		if (sender.getBalance().compareTo(amountAsBigDecimal) >= 0 ) {
 			sender.setBalance(sender.getBalance().subtract(amountAsBigDecimal));
 			recipient.setBalance(recipient.getBalance().add(amountAsBigDecimal));
-			success = true;
+			return true;
 		} else {
 			throw ClientException.of(messageCreator.createMessage(NOT_ENOUGH_FUNDS));
 		}
-
-		return success;
 	};
 }

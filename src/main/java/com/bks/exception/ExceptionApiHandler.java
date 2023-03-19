@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 @RestControllerAdvice
 public class ExceptionApiHandler {
 
-	/*handler for any kind of a custom business exception */
+	/*handler for any kind of a custom  exception */
 	@ExceptionHandler(ClientException.class)
 	public ResponseEntity<ExceptionResponseDto> handleClientException(ClientException e) {
 		return ResponseEntity
