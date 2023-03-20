@@ -2,6 +2,7 @@ package com.bks.service;
 
 import com.bks.domain.Account;
 import com.bks.repository.AccountRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -17,7 +18,6 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-//@RequiredArgsConstructor
 @Slf4j
 public class AccountServiceImpl implements AccountService {
 
