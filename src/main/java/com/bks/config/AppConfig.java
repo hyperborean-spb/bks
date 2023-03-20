@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +25,10 @@ import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 @EnableScheduling
 @EnableAsync
 @ConditionalOnProperty(name = "scheduler.enabled", matchIfMissing = true)
+@ConfigurationProperties("app")
 public class AppConfig {
+
+	private String outExchange;
 
 	@Bean
 	public MessageSource messageSource() {
