@@ -1,13 +1,13 @@
 package com.bks.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
 
 //default constructor for JSON Parsing
-@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class AuthenticationRequest implements Serializable {

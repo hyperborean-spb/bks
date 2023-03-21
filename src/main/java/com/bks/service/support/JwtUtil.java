@@ -11,10 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import static com.bks.service.support.ServiceConstants.SECRET_KEY;
+
 @Service
 public class JwtUtil {
 
-    private String SECRET_KEY = "secret";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

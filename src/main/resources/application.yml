@@ -68,4 +68,5 @@ scheduler:
   interval: 30000
 
 app:
-  out_exchange: outExchange
+  input_exchange: inputExchange
+  input_queue: inputQueue
