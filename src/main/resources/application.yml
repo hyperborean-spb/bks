@@ -68,5 +68,5 @@ scheduler:
   interval: 30000
 
 app:
-  input_exchange: inputExchange
-  input_queue: inputQueue
+  client_exchange: clientExchange
+  client_queue: clientQueue

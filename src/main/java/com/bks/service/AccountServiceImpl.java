@@ -31,14 +31,17 @@ public class AccountServiceImpl implements AccountService {
 
 	public AccountServiceImpl(AccountRepository accountRepository) {
 		this.accountRepository = accountRepository;
+		initAccount();
+	}
 
+	private void initAccount(){
 		initAccounts = getAccounts();
 		finalBalanceList = initAccounts.stream()
 		.map(account -> account.getBalance().multiply(balanceRaiseLimit))
 		.collect(Collectors.toList());
 
 		initAccounts.forEach(account->
-				log.info("client ID - {}, initial  balance - {},  started at - {}", account.getClient().getId(), account.getBalance().setScale(2, RoundingMode.HALF_UP), formatEventDate()));
+		log.info("client ID - {}, initial  balance - {},  started at - {}", account.getClient().getId(), account.getBalance().setScale(2, RoundingMode.HALF_UP), formatEventDate()));
 	}
 
 	@Override
@@ -46,7 +49,7 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.findAll();
 	};
 
-	@Scheduled(fixedRateString = "${scheduler.interval}", initialDelayString =  "${scheduler.interval}")
+	//@Scheduled(fixedRateString = "${scheduler.interval}"/*, initialDelayString =  "${scheduler.interval}"*/)
 	@Async
 	@Override
 	public void incrementBalance() {

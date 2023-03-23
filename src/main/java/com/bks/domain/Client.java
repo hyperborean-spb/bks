@@ -24,8 +24,13 @@ public class Client {
 	private String name;
 
 	@Column (nullable = false, name = "DATE_OF_BIRTH")
+	/* no need to map types from java.time package - @Basic or @Column is enoughs
 	@JsonFormat(pattern = "dd.MM.yyyy")
 	@DateTimeFormat(pattern = "dd.MM.yyyy")
+
+	хотя... с другой стороны, поле какого типа  - DATE OR TIMESTAMP - будет создано в базе,
+	если  генерировать таблицу не из data.sql и не  добавить @DateTimeFormat ?
+	*/
 	private LocalDate birthdate;
 
 	@Column (nullable = false)

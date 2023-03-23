@@ -39,7 +39,7 @@ public class RabbitClient {
 	/**
 	 * инициализация channel (канала) входящих сообщений
 	 */
-	public Channel initSyncChannel() {
+	public Channel initChannel() {
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost(rabbitmqHost);
 		factory.setUsername(rabbitmqUser);
@@ -54,47 +54,6 @@ public class RabbitClient {
 		}
 		return channel;
 	}
-
-	/**
-	 * инициализация икченджа RabbitMQ, через очереди которого осуществляется оповещение
-	 */
-	/*public void initOutExchange() {
-		try {
-			notificationChannel = rmqConnection.createChannel();
-			notificationChannel.exchangeDeclare(appConfig.getOutExchange(),  BuiltinExchangeType.DIRECT, true);
-		} catch (IOException e) {
-			log.error("Ошибка создания иксенджа  {} ",  e.getMessage());
-		}
-	}*/
-
-	/**
-	 * объявление и привязка очередей
-	 * @param queueName  имя очереди
-	 * @param exchange	иксчендж, за которым закреплена очередь
-	 * @param bindKey	ключ закрепления очереди к иксченджу
-	 */
-	private void declareAndBindQueue(String queueName, String exchange, String bindKey) {
-		try {
-			notificationChannel.queueDeclare(queueName, true, false, false, null);
-			notificationChannel.queueBind(queueName, exchange, bindKey);
-		} catch (IOException e) {
-			log.error("Ошибка создания либо байндинга очереди :{}", e.getMessage());
-		}
-	}
-
-	/**
-	 * базовый механизм публикации сообщений в очередь
-	 * @param exchange  икчендж, куда будет опубликовано сообщение
-	 * @param routingKey ключ адресации. не важен в случае FANOUT искченджа
-	 * @param notification собственно публикуемое сообщение
-	 */
-	/*private  void publish(String exchange, String routingKey, String notification) {
-		try {
-			notificationChannel.basicPublish(exchange, routingKey, null, notification.getBytes(StandardCharsets.UTF_8));
-		} catch (IOException e) {
-			log.error("Error while  publishing notification:{}", e.getMessage());
-		}
-	}*/
 
 	/**
 	 * реализация слушателя иксченджа событий какого-либо из сервисов
@@ -160,29 +119,38 @@ public class RabbitClient {
 		}
 	}
 
-	/* убрать лишние аргументы */
-	public void initSyncListener(Channel channel, String queueName, String exchange, String bindKey, Consumer<Object> consumer) {
+	public void initMessageListener(Channel channel, String queueName, String exchange, String bindKey, Consumer<Object> consumer) {
 
-		/*что за аргумент str ?*/
+		/**
+		 * Called when a <code><b>basic.deliver</b></code> is received for this consumer.
+		 * @param consumerTag the <i>consumer tag</i> associated with the consumer
+		 * @param message the delivered message
+		 * @throws IOException if the consumer encounters an I/O error while processing the message
+		 *
+		 * void handle(String consumerTag, Delivery message) throws IOException;
+		 */
+
 		DeliverCallback deliverCallback = (str, delivery) -> {
 
-			Object rabbitMessage = null;
+			Object rmqMessage = null;
 			try {
-				rabbitMessage =  SerializationUtils.deserialize(delivery.getBody());
-				log.info("RabbitMQ message: {}", rabbitMessage);
+				log.info("delivery.getBody(): {}", delivery.getBody());
+				rmqMessage =  SerializationUtils.deserialize(delivery.getBody());
+				log.info("RabbitMQ сообщение: {}", rmqMessage);
 			} catch (Exception e) {
-				log.error("Error while extracting RabbitMQ message: {}", e.getMessage());
+				log.error("Ошибка  чтения сообщения RabbitMQ: {}", e.getMessage());
 			}
 
-			consumer.accept(rabbitMessage);
+			consumer.accept(rmqMessage);
 		};
 		try {
-			/*кажется, не нужен , поскольку декларировал и привязал очередь к иксченджу на выходе
-			declareAndBindQueue(queueName, exchange, bindKey);*/
+
+			channel.queueDeclare(queueName, true, false, false, null);
+			channel.queueBind(queueName, exchange, bindKey);
 			channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {	});
 
 		} catch (IOException e) {
-			log.error("Error while consuming message: " + e.getMessage());
+			log.error("Ошибка  чтения сообщения RabbitMQ: {}", e.getMessage());
 		}
 	}
 }

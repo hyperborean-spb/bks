@@ -1,51 +1,39 @@
 package com.bks;
 
+import com.bks.config.AppConfig;
 import com.bks.service.RabbitClient;
 import com.rabbitmq.client.Channel;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-
 @SpringBootApplication
 @RequiredArgsConstructor
 @EnableScheduling
 @ConditionalOnProperty(name = "scheduler.enabled", matchIfMissing = true)
+@Slf4j
 public class BksCrmApplication implements CommandLineRunner{
 
 	private final RabbitClient rabbitClient;
 
-
-	@Value("${app.input_exchange}")
-	private String inputExchange;
-
-	@Value("${app.input_queue}")
-	private String inputQueue;
-
+	private final AppConfig appConfig;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BksCrmApplication.class, args);
 	}
 
-
-	/*ТОЧНО ЛИ ВСЮ ЭТУ КОНСТРУКЦИЮ СЛУШАТЕЛЯ СЮДА? */
 	@Override
-	public void run(String... args) throws IOException, URISyntaxException {
+	public void run(String... args) {
 
-		Channel syncChannel = rabbitClient.initSyncChannel();
+		Channel сhannel = rabbitClient.initChannel();
 
 		/* НУЖНО (ЛИ) СОЗДАТЬ inputExchange*/
 
 		/* последний аргумент - consumer */
-		rabbitClient.initSyncListener(syncChannel, inputQueue, inputExchange, "",
-		rabbitMessage -> {
-
-		});
+		rabbitClient.initMessageListener(сhannel, appConfig.getClientQueue(), appConfig.getClientExchange(), "", rabbitMessage -> log.info("Процессинг сообщения: {}", rabbitMessage));
 	}
 }

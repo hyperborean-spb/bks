@@ -21,14 +21,14 @@ import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 @Getter
 @Setter
 @Configuration
-@PropertySource("classpath:application.yml")
 @EnableScheduling
 @EnableAsync
 @ConditionalOnProperty(name = "scheduler.enabled", matchIfMissing = true)
 @ConfigurationProperties("app")
 public class AppConfig {
 
-	private String outExchange;
+	private String clientExchange;
+	private String clientQueue;
 
 	@Bean
 	public MessageSource messageSource() {
