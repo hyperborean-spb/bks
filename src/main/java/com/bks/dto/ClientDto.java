@@ -1,15 +1,20 @@
 package com.bks.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
+@Setter
+@ToString
 @NoArgsConstructor
-public class ClientDto {
+@AllArgsConstructor
+public class ClientDto implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 
