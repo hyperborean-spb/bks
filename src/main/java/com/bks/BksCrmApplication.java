@@ -43,14 +43,13 @@ public class BksCrmApplication implements CommandLineRunner{
 		rabbitClient.initMessageListener(channel, appConfig.getClientQueue(), appConfig.getClientExchange(), "",
 			rabbitMessage -> {
 				clientService.registerClient(rabbitMessage);
-				log.info("Процессинг сообщения: {}", rabbitMessage.toString());
+				log.info("Зарегистрирован новый клиент: {}", rabbitMessage.toString());
 			});
 
 		ClientDto newClient = new ClientDto();
 		newClient.setName("Andy");
 		newClient.setBirthdate(LocalDate.of(2005, 11, 7));
 		newClient.setPassword("new_client_pass");
-		newClient.setId(4L);
 		byte[] byteMsg = SerializationUtils.serialize(newClient);
 
 		rabbitClient.publish(channel,  appConfig.getClientExchange(), "",  byteMsg);
