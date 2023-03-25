@@ -60,19 +60,20 @@
             <version>1.6.14</version>
         </dependency>
 
-        <!--парсинг сообщений Rabbit-->
+        <!--десериализация сообщений Rabbit-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.11</version>
         </dependency>
 
-        <!--аутентификация + авторизация по JWT-->
+        <!--создание, валидация JWT-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.9.1</version>
         </dependency>
+        <!-- needed for Java 9+; was earlier removed -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>

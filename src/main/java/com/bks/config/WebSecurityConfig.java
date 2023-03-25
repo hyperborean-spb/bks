@@ -1,7 +1,7 @@
 package com.bks.config;
 
 import com.bks.filters.JwtRequestFilter;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,16 +17,20 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private UserDetailsService myUserDetailsService;
-	@Autowired
-	private JwtRequestFilter jwtRequestFilter;
+	private final UserDetailsService clientDetailsService;
+	private final JwtRequestFilter jwtRequestFilter;
 
-	@Autowired
+	/*@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(myUserDetailsService);
+			auth.userDetailsService(clientDetailsService);
+	}*/
+
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(clientDetailsService);
 	}
 
 	@Bean
@@ -46,7 +50,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.authorizeRequests().antMatchers("/authenticate").permitAll().
 		anyRequest().authenticated().and().
 		exceptionHandling().and().sessionManagement()
+		// tells s.security don't bother making sessions
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		// set security context per each request
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 }

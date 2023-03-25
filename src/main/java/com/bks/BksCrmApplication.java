@@ -12,14 +12,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.time.LocalDate;
+import java.util.concurrent.Executor;
 
 @SpringBootApplication
 @RequiredArgsConstructor
-@EnableScheduling
-@ConditionalOnProperty(name = "scheduler.enabled", matchIfMissing = true)
 @Slf4j
 public class BksCrmApplication implements CommandLineRunner{
 
@@ -43,7 +44,7 @@ public class BksCrmApplication implements CommandLineRunner{
 		rabbitClient.initMessageListener(channel, appConfig.getClientQueue(), appConfig.getClientExchange(), "",
 			rabbitMessage -> {
 				clientService.registerClient(rabbitMessage);
-				log.info("Зарегистрирован новый клиент: {}", rabbitMessage.toString());
+				log.info("зарегистрирован новый клиент: {}", rabbitMessage.toString());
 			});
 
 		ClientDto newClient = new ClientDto();
@@ -53,5 +54,17 @@ public class BksCrmApplication implements CommandLineRunner{
 		byte[] byteMsg = SerializationUtils.serialize(newClient);
 
 		rabbitClient.publish(channel,  appConfig.getClientExchange(), "",  byteMsg);
+	}
+
+	/* пул для @Async; + @EnableAsync (config) */
+	@Bean
+	public Executor taskExecutor() {
+		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+		executor.setCorePoolSize(2);
+		executor.setMaxPoolSize(2);
+		executor.setQueueCapacity(500);
+		executor.setThreadNamePrefix("BKS-");
+		executor.initialize();
+		return executor;
 	}
 }

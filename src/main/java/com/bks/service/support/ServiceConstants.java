@@ -8,5 +8,7 @@ public final class ServiceConstants {
 	public static final String NOT_ENOUGH_FUNDS = "not_enough_funds";
 	public static final String AMOUNT_IS_INFINITE = "amount_is_infinite" ;
 	public static final String AMOUNT_IS_NAN = "amount_is_nan";
-	public static final String SECRET_KEY = "secret";
+	public static final String INCORRECT_MAIL_OR_PASS =  "incorrect_mail_or_pass";
+
+	public static final String SECRET_KEY = "bks_secret";
 }
