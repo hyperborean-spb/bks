@@ -18,10 +18,10 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: false
     generate-ddl: true
-    #это свойство обеспечивает исполнение скриптов schema.sql и data.sql
-    #ПОСЛЕ  создания схемы и таблиц в ней средствами JPA/ Hibernate
-    #что при заполнении таблиц начальными данными позволяет обойтись без liquibase
-    #добавил также spring.sql.init.mode = always
+    #как пишет Baeldung, If we still want to have both Hibernate automatic schema generation in conjugation with script-based schema creation and data population, we'll have to use: true
+    #This will ensure, that after Hibernate schema creation is performed then additionally schema.sql is read for any additional schema changes and data.sql is executed to populate the database.
+    # на самом деле, если это свойство false,  схема и таблицы не будут созданы вовсе, если data.sql есть на classpath. Если нет файла, схема и таблицы созданы будут
+    #схема  - spring.datasource.url (...?currentSchema); таблицы - по сущностям
     defer-datasource-initialization: true
     properties:
       javax:

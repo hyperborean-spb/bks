@@ -39,8 +39,6 @@ public class ClientServiceImpl implements ClientService {
 	private final ExceptionMessageCreator messageCreator;
 	private final ModelMapper modelMapper;
 
-
-	// Containing or Like?
 	@Override
 	public Page<Client> getClientsByName(int page, int size, String name) {
 		Pageable pageable = PageRequest.of(page, size);
@@ -72,27 +70,36 @@ public class ClientServiceImpl implements ClientService {
 		return clientRepository.saveAndFlush(client);
 	}
 
-	/* какой УРОВЕНЬ ИЗОЛЯЦИИ выставить?*/
+	/* какой уровень изоляции достаточен?
+	* NAN or infinity привели бы к NumberFormatException
+	* */
 	@Transactional
 	@Override
 	public boolean moneyTransfer(long senderId, long recipientId, float amount){
+
 		Account sender ;
 		Account recipient;
+
+		if(Float.isInfinite(amount))
+			throw ClientException.of(messageCreator.createMessage(AMOUNT_IS_INFINITE));
+
+		if(Float.isNaN(amount))
+			throw ClientException.of(messageCreator.createMessage(AMOUNT_IS_NAN));
+
 		BigDecimal amountAsBigDecimal = new BigDecimal(amount);
+
 		List<Account> senderAccounts = accountRepository.getAccountByClientId(senderId);
 		List<Account> recipientAccounts = accountRepository.getAccountByClientId(recipientId);
+
 		if (!senderAccounts.isEmpty()) {
 			sender = senderAccounts.get(0);
 		} else {
-			log.info("senderAccounts is empty: " +  (senderAccounts.isEmpty() ?"true": "false"));
-			log.info(messageCreator.createMessage(SENDER_ID_ACCOUNT_NOT_FOUND));
 			throw ClientException.of(messageCreator.createMessage(SENDER_ID_ACCOUNT_NOT_FOUND));
 		}
 
 		if (!senderAccounts.isEmpty()) {
 			recipient = recipientAccounts.get(0);
 		} else {
-			log.info("recipientAccounts is empty: " +  (recipientAccounts.isEmpty() ?"true": "false"));
 			throw ClientException.of(messageCreator.createMessage(RECIPIENT_ID_ACCOUNT_NOT_FOUND));
 		}
 
