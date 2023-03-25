@@ -86,12 +86,10 @@ public class RabbitClient {
 			ClientDto rmqMessage = null;
 			//String rmqMessage = null;
 			try {
-				log.info("delivery {}", delivery);
 				log.info("delivery.getProperties() {}", delivery.getProperties());
 				log.info("delivery.getBody(): {}", delivery.getBody());
 				//rmqMessage = new String(delivery.getBody(), "UTF-8");
-				rmqMessage =   (ClientDto) SerializationUtils.deserialize(delivery.getBody());
-				//rmqMessage =  delivery.getBody();
+				rmqMessage =  SerializationUtils.deserialize(delivery.getBody());
 				log.info("RabbitMQ сообщение: {}", rmqMessage.toString());
 			} catch (Exception e) {
 				log.error("Ошибка  чтения сообщения RabbitMQ: {}", e.getMessage());
@@ -100,7 +98,6 @@ public class RabbitClient {
 			consumer.accept(rmqMessage);
 		};
 		try {
-
 			channel.queueDeclare(queueName, true, false, false, null);
 			channel.queueBind(queueName, exchange, bindKey);
 			channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {	});

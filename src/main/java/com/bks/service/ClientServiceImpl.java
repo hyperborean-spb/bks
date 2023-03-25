@@ -104,8 +104,12 @@ public class ClientServiceImpl implements ClientService {
 		}
 
 		if (sender.getBalance().compareTo(amountAsBigDecimal) >= 0 ) {
+			sender.getAccountLock().writeLock().lock();
+			recipient.getAccountLock().writeLock().lock();
 			sender.setBalance(sender.getBalance().subtract(amountAsBigDecimal));
+			sender.getAccountLock().writeLock().unlock();
 			recipient.setBalance(recipient.getBalance().add(amountAsBigDecimal));
+			recipient.getAccountLock().writeLock().unlock();
 			return true;
 		} else {
 			throw ClientException.of(messageCreator.createMessage(NOT_ENOUGH_FUNDS));
