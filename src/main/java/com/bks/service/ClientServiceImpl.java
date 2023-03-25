@@ -91,16 +91,16 @@ public class ClientServiceImpl implements ClientService {
 		List<Account> senderAccounts = accountRepository.getAccountByClientId(senderId);
 		List<Account> recipientAccounts = accountRepository.getAccountByClientId(recipientId);
 
-		if (!senderAccounts.isEmpty()) {
-			sender = senderAccounts.get(0);
-		} else {
+		if (senderAccounts.isEmpty()) {
 			throw ClientException.of(messageCreator.createMessage(SENDER_ID_ACCOUNT_NOT_FOUND));
+		} else {
+			sender = senderAccounts.get(0);
 		}
 
-		if (!senderAccounts.isEmpty()) {
-			recipient = recipientAccounts.get(0);
-		} else {
+		if (recipientAccounts.isEmpty()) {
 			throw ClientException.of(messageCreator.createMessage(RECIPIENT_ID_ACCOUNT_NOT_FOUND));
+		} else {
+			recipient = recipientAccounts.get(0);
 		}
 
 		if (sender.getBalance().compareTo(amountAsBigDecimal) >= 0 ) {
