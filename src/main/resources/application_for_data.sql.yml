@@ -11,7 +11,7 @@ spring:
   application:
     name: bks_crm
   datasource:
-    url: jdbc:postgresql://localhost:5432/bks
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=bks
     username: postgres
     password: andreymstepanov
   jpa:
@@ -22,22 +22,22 @@ spring:
     #This will ensure, that after Hibernate schema creation is performed then additionally schema.sql is read for any additional schema changes and data.sql is executed to populate the database.
     # на самом деле, если это свойство false,  схема и таблицы не будут созданы вовсе, если data.sql есть на classpath. Если нет файла, схема и таблицы созданы будут
     #схема  - spring.datasource.url (...?currentSchema); таблицы - по сущностям
-    defer-datasource-initialization: false
+    defer-datasource-initialization: true
     properties:
       javax:
         persistence:
           schema-generation:
             database:
-              action: none
+              action: create
       hibernate:
-        ddl-auto: create-drop
+        ddl-auto: update
         hbm2dll:
           create_namespaces: true
         show_sql: false
         format_sql: true
         connection:
           autocommit: false
-#        default_schema: bks
+        default_schema: bks
         current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
         temp:
           use_jdbc_metadata_defaults: false
@@ -47,18 +47,18 @@ spring:
     username: guest
     password: guest
 
-  liquibase:
-    enabled: true
+#  liquibase:
+#    enabled: true
 #    default_schema: bks
-    change-log: classpath:/db/changelog/db.changelog-master.yml
-    database-change-log-lock-table: bks_databasechangeloglock
-    database-change-log-table: bks_databasechangelog
+#    change-log: classpath:/db/changelog/db.changelog-master.yml
+#    database-change-log-lock-table: bks_databasechangeloglock
+#    database-change-log-table: bks_databasechangelog
 
   #script-based initialization is performed by default only for embedded databases
   #to always initialize a database using scripts - schema.sql and data.sql USE spring.sql.init.mode=always
-#  sql:
-#    init:
-#      mode: always
+  sql:
+    init:
+      mode: always
 
 logging:
   file:

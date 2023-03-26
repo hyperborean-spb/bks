@@ -54,7 +54,7 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.findAll();
 	};
 
-	//@Scheduled(fixedRateString = "${scheduler.interval}", initialDelayString =  "${scheduler.interval}")
+	@Scheduled(fixedRateString = "${scheduler.interval}", initialDelayString =  "${scheduler.interval}")
 	@Async
 	@Override
 	public void incrementBalance() {
