@@ -1,4 +1,4 @@
-package com.bks.service.support;
+package com.bks.service;
 
 import com.bks.domain.Client;
 import com.bks.service.ClientService;
@@ -24,10 +24,7 @@ public class BksUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
-    	Client client = clientService.getClientByMail(s) ;
-    	if (client == null)
-			throw new UsernameNotFoundException("Пользователь с указанным почтовым адресом в системе отсутствует" );
-
+    	Client client = clientService.getClientByMail(s) ; //  != null согласно  getClientByMail
         return new User(s, client.getPassword(), new ArrayList<>());
     }
 }

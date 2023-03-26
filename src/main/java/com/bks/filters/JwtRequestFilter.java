@@ -1,7 +1,7 @@
 package com.bks.filters;
 
 import com.bks.service.support.JwtUtil;
-import com.bks.service.support.BksUserDetailsService;
+import com.bks.service.BksUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

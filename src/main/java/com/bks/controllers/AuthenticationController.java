@@ -5,8 +5,9 @@ import com.bks.dto.AuthenticationResponse;
 import com.bks.exception.ClientException;
 import com.bks.exception.ExceptionMessageCreator;
 import com.bks.service.support.JwtUtil;
-import com.bks.service.support.BksUserDetailsService;
+import com.bks.service.BksUserDetailsService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,7 @@ public class AuthenticationController {
 
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	@Operation(summary = "Аутентификация и формирование JWT в теле отклика")
+	@SecurityRequirement(name = "JWT")
 	public ResponseEntity<AuthenticationResponse> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws ClientException {
 
 		try {
@@ -55,6 +57,7 @@ public class AuthenticationController {
 
 	@RequestMapping({ "/hello" })
 	@Operation(summary = "изначально защищенная тестовая точка для проверки корректности работы JWT")
+	@SecurityRequirement(name = "JWT")
 	public String firstPage() {
 		return "Hello World";
 	}
