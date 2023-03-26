@@ -23,11 +23,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private final UserDetailsService clientDetailsService;
 	private final JwtRequestFilter jwtRequestFilter;
 
-	/*@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-			auth.userDetailsService(clientDetailsService);
-	}*/
-
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(clientDetailsService);

@@ -1,10 +1,8 @@
 package com.bks.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -18,7 +16,6 @@ import java.time.LocalDate;
 public class Client {
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence")
 	private Long id;
 

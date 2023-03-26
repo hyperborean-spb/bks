@@ -11,9 +11,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.time.LocalDate;
@@ -56,7 +54,7 @@ public class BksCrmApplication implements CommandLineRunner{
 		rabbitClient.publish(channel,  appConfig.getClientExchange(), "",  byteMsg);
 	}
 
-	/* пул для @Async; + @EnableAsync (config) */
+	/* пул для @Async; + @EnableAsync in config */
 	@Bean
 	public Executor taskExecutor() {
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();

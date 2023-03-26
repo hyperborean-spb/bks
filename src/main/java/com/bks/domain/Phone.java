@@ -23,6 +23,6 @@ public class Phone {
 	private Client client;
 
 	@Pattern(regexp = "7\\d{10}",
-	message = "eleven digits only starting with seven")
+	message = "номер телефона не соответствует ожидаемому формату")
 	private  String phone;
 }

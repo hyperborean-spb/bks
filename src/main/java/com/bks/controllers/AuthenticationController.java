@@ -32,9 +32,6 @@ public class AuthenticationController {
 	private final JwtUtil jwtTokenUtil;
 	private final BksUserDetailsService userDetailsService;
 
-
-	//КАК СФОРМИРОВАТЬ И ПЕРЕДАТЬ AuthenticationRequest ?
-
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	@Operation(summary = "Аутентификация и формирование JWT в теле отклика")
 	public ResponseEntity<AuthenticationResponse> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws ClientException {

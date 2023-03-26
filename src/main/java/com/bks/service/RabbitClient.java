@@ -7,12 +7,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.SerializationUtils;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.function.Consumer;
 
 @Service
@@ -86,8 +84,8 @@ public class RabbitClient {
 			ClientDto rmqMessage = null;
 			//String rmqMessage = null;
 			try {
-				log.info("delivery.getProperties() {}", delivery.getProperties());
-				log.info("delivery.getBody(): {}", delivery.getBody());
+				//log.info("delivery.getProperties() {}", delivery.getProperties());
+				//log.info("delivery.getBody(): {}", delivery.getBody());
 				//rmqMessage = new String(delivery.getBody(), "UTF-8");
 				rmqMessage =  SerializationUtils.deserialize(delivery.getBody());
 				log.info("RabbitMQ сообщение: {}", rmqMessage.toString());

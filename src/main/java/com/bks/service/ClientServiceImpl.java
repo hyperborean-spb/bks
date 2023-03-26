@@ -27,7 +27,6 @@ import java.util.List;
 import static com.bks.service.support.ServiceConstants.*;
 
 @Service
-//@Transactional
 @RequiredArgsConstructor
 @Slf4j
 public class ClientServiceImpl implements ClientService {
@@ -63,16 +62,13 @@ public class ClientServiceImpl implements ClientService {
 		return m.getClient();
 	}
 
-
+	@Transactional
 	@Override
 	public Client registerClient(ClientDto clientDto) {
 		Client client = modelMapper.map(clientDto, Client.class);
 		return clientRepository.saveAndFlush(client);
 	}
 
-	/* какой уровень изоляции достаточен?
-	* NAN or infinity привели бы к NumberFormatException
-	* */
 	@Transactional
 	@Override
 	public boolean moneyTransfer(long senderId, long recipientId, float amount){

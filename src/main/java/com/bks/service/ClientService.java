@@ -5,7 +5,6 @@ import com.bks.dto.ClientDto;
 import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public interface ClientService {
 
