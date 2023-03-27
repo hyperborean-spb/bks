@@ -1,0 +1,125 @@
+2023-03-26 21:36:50.001  INFO 10784 --- [main] com.bks.BksCrmApplication                : Starting BksCrmApplication using Java 11.0.12 on StepanovAndrey with PID 10784 (C:\projects\java\bks\target\classes started by Stepanov Andrey in C:\projects\java\bks)
+2023-03-26 21:36:50.004  INFO 10784 --- [main] com.bks.BksCrmApplication                : No active profile set, falling back to 1 default profile: "default"
+2023-03-26 21:36:51.187  INFO 10784 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-26 21:36:51.259  INFO 10784 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 4 JPA repository interfaces.
+2023-03-26 21:36:52.096  INFO 10784 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-26 21:36:52.110  INFO 10784 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-26 21:36:52.110  INFO 10784 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-26 21:36:52.236  INFO 10784 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-26 21:36:52.237  INFO 10784 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2169 ms
+2023-03-26 21:36:52.370  INFO 10784 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-26 21:36:52.496  INFO 10784 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-26 21:36:52.883  INFO 10784 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-03-26 21:36:52.913  INFO 10784 --- [main] liquibase.changelog                      : Reading resource: db/changelog/init/01_define_structure.sql
+2023-03-26 21:36:52.924  INFO 10784 --- [main] liquibase.changelog                      : Reading resource: db/changelog/init/02_load_data.sql
+2023-03-26 21:36:52.949  INFO 10784 --- [main] liquibase.changelog                      : Creating database history table with name: public.bks_databasechangelog
+2023-03-26 21:36:52.961  INFO 10784 --- [main] liquibase.changelog                      : Reading from public.bks_databasechangelog
+2023-03-26 21:36:53.003  INFO 10784 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-03-26 21:36:53.008  INFO 10784 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-03-26 21:36:53.009  WARN 10784 --- [main] liquibase.hub                            : Skipping auto-registration
+2023-03-26 21:36:53.078  INFO 10784 --- [main] liquibase.changelog                      : Custom SQL executed
+2023-03-26 21:36:53.079  INFO 10784 --- [main] liquibase.changelog                      : ChangeSet db/changelog/init/01_define_structure.sql::raw::includeAll ran successfully in 63ms
+2023-03-26 21:36:53.150  INFO 10784 --- [main] liquibase.changelog                      : Custom SQL executed
+2023-03-26 21:36:53.151  INFO 10784 --- [main] liquibase.changelog                      : ChangeSet db/changelog/init/02_load_data.sql::raw::includeAll ran successfully in 23ms
+2023-03-26 21:36:53.155  INFO 10784 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-03-26 21:36:53.236  INFO 10784 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-26 21:36:53.279  INFO 10784 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-26 21:36:53.412  INFO 10784 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-26 21:36:53.511  INFO 10784 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-03-26 21:36:54.136  INFO 10784 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-26 21:36:54.147  INFO 10784 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-26 21:36:54.913  WARN 10784 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-26 21:36:55.022  INFO 10784 --- [main] com.bks.service.AccountServiceImpl       : accountRepository.findAll() : [com.bks.domain.Account@34114276, com.bks.domain.Account@78e4fa1, com.bks.domain.Account@4516c2ef]
+2023-03-26 21:36:55.025  INFO 10784 --- [main] com.bks.service.AccountServiceImpl       : initAccounts : [com.bks.domain.Account@502b9399, com.bks.domain.Account@433db56d, com.bks.domain.Account@e23af91]
+2023-03-26 21:36:55.026  INFO 10784 --- [main] com.bks.service.AccountServiceImpl       : accountsToReach : [25.37819999999999803996786340576363727450370788574218750, 29.70449999999999770583514191457652486860752105712890625, 69.55199999999999462829691765364259481430053710937500000]
+2023-03-26 21:36:55.031  INFO 10784 --- [main] com.bks.service.AccountServiceImpl       : client ID - 1, initial  balance - 12.26,  started at - 2023/03/26 21:36:55
+2023-03-26 21:36:55.032  INFO 10784 --- [main] com.bks.service.AccountServiceImpl       : client ID - 2, initial  balance - 14.35,  started at - 2023/03/26 21:36:55
+2023-03-26 21:36:55.032  INFO 10784 --- [main] com.bks.service.AccountServiceImpl       : client ID - 3, initial  balance - 33.60,  started at - 2023/03/26 21:36:55
+2023-03-26 21:36:55.205  INFO 10784 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@62376bdd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3b8a063d, org.springframework.security.web.context.SecurityContextPersistenceFilter@76ebd595, org.springframework.security.web.header.HeaderWriterFilter@6344004d, org.springframework.security.web.authentication.logout.LogoutFilter@1f7b1d6a, com.bks.filters.JwtRequestFilter@33845e3d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@225fb75e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6a906078, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3a36da5e, org.springframework.security.web.session.SessionManagementFilter@62ba3045, org.springframework.security.web.access.ExceptionTranslationFilter@1dae9e61, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@16269ff4]
+2023-03-26 21:36:56.583  INFO 10784 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-26 21:36:56.601  INFO 10784 --- [main] com.bks.BksCrmApplication                : Started BksCrmApplication in 7.295 seconds (JVM running for 7.966)
+2023-03-26 21:36:56.665  INFO 10784 --- [pool-2-thread-4] com.bks.service.RabbitClient             : delivery.getProperties() #contentHeader<basic>(content-type=null, content-encoding=null, headers=null, delivery-mode=null, priority=null, correlation-id=null, reply-to=null, expiration=null, message-id=null, timestamp=null, type=null, user-id=null, app-id=null, cluster-id=null)
+2023-03-26 21:36:56.666  INFO 10784 --- [pool-2-thread-4] com.bks.service.RabbitClient             : delivery.getBody(): [-84, -19, 0, 5, 115, 114, 0, 21, 99, 111, 109, 46, 98, 107, 115, 46, 100, 116, 111, 46, 67, 108, 105, 101, 110, 116, 68, 116, 111, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 4, 76, 0, 9, 98, 105, 114, 116, 104, 100, 97, 116, 101, 116, 0, 21, 76, 106, 97, 118, 97, 47, 116, 105, 109, 101, 47, 76, 111, 99, 97, 108, 68, 97, 116, 101, 59, 76, 0, 2, 105, 100, 116, 0, 16, 76, 106, 97, 118, 97, 47, 108, 97, 110, 103, 47, 76, 111, 110, 103, 59, 76, 0, 4, 110, 97, 109, 101, 116, 0, 18, 76, 106, 97, 118, 97, 47, 108, 97, 110, 103, 47, 83, 116, 114, 105, 110, 103, 59, 76, 0, 8, 112, 97, 115, 115, 119, 111, 114, 100, 113, 0, 126, 0, 3, 120, 112, 115, 114, 0, 13, 106, 97, 118, 97, 46, 116, 105, 109, 101, 46, 83, 101, 114, -107, 93, -124, -70, 27, 34, 72, -78, 12, 0, 0, 120, 112, 119, 7, 3, 0, 0, 7, -43, 11, 7, 120, 112, 116, 0, 4, 65, 110, 100, 121, 116, 0, 15, 110, 101, 119, 95, 99, 108, 105, 101, 110, 116, 95, 112, 97, 115, 115]
+2023-03-26 21:36:56.682  INFO 10784 --- [pool-2-thread-4] com.bks.service.RabbitClient             : RabbitMQ сообщение: ClientDto(id=null, name=Andy, birthdate=2005-11-07, password=new_client_pass)
+2023-03-26 21:36:56.768  INFO 10784 --- [pool-2-thread-4] com.bks.BksCrmApplication                : зарегистрирован новый клиент: ClientDto(id=null, name=Andy, birthdate=2005-11-07, password=new_client_pass)
+2023-03-26 21:37:26.643  INFO 10784 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 13.49,  changed at - 2023/03/26 21:37:26
+2023-03-26 21:37:26.644  INFO 10784 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 15.79,  changed at - 2023/03/26 21:37:26
+2023-03-26 21:37:26.644  INFO 10784 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 36.96,  changed at - 2023/03/26 21:37:26
+2023-03-26 21:37:56.579  INFO 10784 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 14.84,  changed at - 2023/03/26 21:37:56
+2023-03-26 21:37:56.579  INFO 10784 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 17.37,  changed at - 2023/03/26 21:37:56
+2023-03-26 21:37:56.580  INFO 10784 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 40.66,  changed at - 2023/03/26 21:37:56
+2023-03-26 21:40:59.968  INFO 10784 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 16.32,  changed at - 2023/03/26 21:40:59
+2023-03-26 21:40:59.969  INFO 10784 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 19.11,  changed at - 2023/03/26 21:40:59
+2023-03-26 21:40:59.969  INFO 10784 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 44.73,  changed at - 2023/03/26 21:40:59
+2023-03-26 21:41:27.181  INFO 10784 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 17.95,  changed at - 2023/03/26 21:41:27
+2023-03-26 21:41:27.182  INFO 10784 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 21.02,  changed at - 2023/03/26 21:41:27
+2023-03-26 21:41:27.183  INFO 10784 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 49.20,  changed at - 2023/03/26 21:41:27
+2023-03-26 21:41:53.132  INFO 10784 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 19.75,  changed at - 2023/03/26 21:41:53
+2023-03-26 21:41:53.133  INFO 10784 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 23.12,  changed at - 2023/03/26 21:41:53
+2023-03-26 21:41:53.136  INFO 10784 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 54.12,  changed at - 2023/03/26 21:41:53
+2023-03-26 21:42:18.449  INFO 10784 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 21.73,  changed at - 2023/03/26 21:42:18
+2023-03-26 21:42:18.449  INFO 10784 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 25.43,  changed at - 2023/03/26 21:42:18
+2023-03-26 21:42:18.450  INFO 10784 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 59.53,  changed at - 2023/03/26 21:42:18
+2023-03-26 21:42:46.118  INFO 10784 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 23.90,  changed at - 2023/03/26 21:42:46
+2023-03-26 21:42:46.119  INFO 10784 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 27.97,  changed at - 2023/03/26 21:42:46
+2023-03-26 21:42:46.119  INFO 10784 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 65.48,  changed at - 2023/03/26 21:42:46
+2023-03-26 22:01:04.022  INFO 10964 --- [main] com.bks.BksCrmApplication                : Starting BksCrmApplication using Java 11.0.12 on StepanovAndrey with PID 10964 (C:\projects\java\bks\target\classes started by Stepanov Andrey in C:\projects\java\bks)
+2023-03-26 22:01:04.026  INFO 10964 --- [main] com.bks.BksCrmApplication                : No active profile set, falling back to 1 default profile: "default"
+2023-03-26 22:01:05.147  INFO 10964 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-26 22:01:05.222  INFO 10964 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 4 JPA repository interfaces.
+2023-03-26 22:01:06.099  INFO 10964 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-26 22:01:06.114  INFO 10964 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-26 22:01:06.115  INFO 10964 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-26 22:01:06.263  INFO 10964 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-26 22:01:06.263  INFO 10964 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2176 ms
+2023-03-26 22:01:06.403  INFO 10964 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-26 22:01:06.518  INFO 10964 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-26 22:01:06.927  INFO 10964 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-03-26 22:01:06.966  INFO 10964 --- [main] liquibase.changelog                      : Reading resource: db/changelog/init/01_define_structure.sql
+2023-03-26 22:01:06.978  INFO 10964 --- [main] liquibase.changelog                      : Reading resource: db/changelog/init/02_load_data.sql
+2023-03-26 22:01:07.090  INFO 10964 --- [main] liquibase.changelog                      : Reading from public.bks_databasechangelog
+2023-03-26 22:01:07.126  INFO 10964 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-03-26 22:01:07.131  INFO 10964 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-03-26 22:01:07.132  WARN 10964 --- [main] liquibase.hub                            : Skipping auto-registration
+2023-03-26 22:01:07.140  INFO 10964 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-03-26 22:01:07.224  INFO 10964 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-26 22:01:07.290  INFO 10964 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-26 22:01:07.470  INFO 10964 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-26 22:01:07.594  INFO 10964 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-03-26 22:01:08.330  INFO 10964 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-26 22:01:08.341  INFO 10964 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-26 22:01:09.167  WARN 10964 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-26 22:01:09.287  INFO 10964 --- [main] com.bks.service.AccountServiceImpl       : accountRepository.findAll() : [com.bks.domain.Account@23f539df, com.bks.domain.Account@4fc8163, com.bks.domain.Account@6c26e588]
+2023-03-26 22:01:09.291  INFO 10964 --- [main] com.bks.service.AccountServiceImpl       : initAccounts : [com.bks.domain.Account@44f338ec, com.bks.domain.Account@64acf8d2, com.bks.domain.Account@112a50a1]
+2023-03-26 22:01:09.292  INFO 10964 --- [main] com.bks.service.AccountServiceImpl       : accountsToReach : [49.47299999999999617905643845006125047802925109863281250, 57.89789999999999552837692817774950526654720306396484375, 135.54359999999998953157387404644396156072616577148437500]
+2023-03-26 22:01:09.298  INFO 10964 --- [main] com.bks.service.AccountServiceImpl       : client ID - 1, initial  balance - 23.90,  started at - 2023/03/26 22:01:09
+2023-03-26 22:01:09.298  INFO 10964 --- [main] com.bks.service.AccountServiceImpl       : client ID - 2, initial  balance - 27.97,  started at - 2023/03/26 22:01:09
+2023-03-26 22:01:09.299  INFO 10964 --- [main] com.bks.service.AccountServiceImpl       : client ID - 3, initial  balance - 65.48,  started at - 2023/03/26 22:01:09
+2023-03-26 22:01:09.456  INFO 10964 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@62158618, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7c31e01f, org.springframework.security.web.context.SecurityContextPersistenceFilter@7dc963be, org.springframework.security.web.header.HeaderWriterFilter@47d7e4b6, org.springframework.security.web.authentication.logout.LogoutFilter@11267e87, com.bks.filters.JwtRequestFilter@7c07023, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6f9999f6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4c678a1f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7945986a, org.springframework.security.web.session.SessionManagementFilter@58189132, org.springframework.security.web.access.ExceptionTranslationFilter@3e984100, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1dae9e61]
+2023-03-26 22:01:10.817  INFO 10964 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-26 22:01:10.834  INFO 10964 --- [main] com.bks.BksCrmApplication                : Started BksCrmApplication in 7.449 seconds (JVM running for 8.237)
+2023-03-26 22:01:10.898  INFO 10964 --- [pool-2-thread-4] com.bks.service.RabbitClient             : delivery.getProperties() #contentHeader<basic>(content-type=null, content-encoding=null, headers=null, delivery-mode=null, priority=null, correlation-id=null, reply-to=null, expiration=null, message-id=null, timestamp=null, type=null, user-id=null, app-id=null, cluster-id=null)
+2023-03-26 22:01:10.899  INFO 10964 --- [pool-2-thread-4] com.bks.service.RabbitClient             : delivery.getBody(): [-84, -19, 0, 5, 115, 114, 0, 21, 99, 111, 109, 46, 98, 107, 115, 46, 100, 116, 111, 46, 67, 108, 105, 101, 110, 116, 68, 116, 111, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 4, 76, 0, 9, 98, 105, 114, 116, 104, 100, 97, 116, 101, 116, 0, 21, 76, 106, 97, 118, 97, 47, 116, 105, 109, 101, 47, 76, 111, 99, 97, 108, 68, 97, 116, 101, 59, 76, 0, 2, 105, 100, 116, 0, 16, 76, 106, 97, 118, 97, 47, 108, 97, 110, 103, 47, 76, 111, 110, 103, 59, 76, 0, 4, 110, 97, 109, 101, 116, 0, 18, 76, 106, 97, 118, 97, 47, 108, 97, 110, 103, 47, 83, 116, 114, 105, 110, 103, 59, 76, 0, 8, 112, 97, 115, 115, 119, 111, 114, 100, 113, 0, 126, 0, 3, 120, 112, 115, 114, 0, 13, 106, 97, 118, 97, 46, 116, 105, 109, 101, 46, 83, 101, 114, -107, 93, -124, -70, 27, 34, 72, -78, 12, 0, 0, 120, 112, 119, 7, 3, 0, 0, 7, -43, 11, 7, 120, 112, 116, 0, 4, 65, 110, 100, 121, 116, 0, 15, 110, 101, 119, 95, 99, 108, 105, 101, 110, 116, 95, 112, 97, 115, 115]
+2023-03-26 22:01:10.914  INFO 10964 --- [pool-2-thread-4] com.bks.service.RabbitClient             : RabbitMQ сообщение: ClientDto(id=null, name=Andy, birthdate=2005-11-07, password=new_client_pass)
+2023-03-26 22:01:11.021  INFO 10964 --- [pool-2-thread-4] com.bks.BksCrmApplication                : зарегистрирован новый клиент: ClientDto(id=null, name=Andy, birthdate=2005-11-07, password=new_client_pass)
+2023-03-26 22:01:40.859  INFO 10964 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 26.29,  changed at - 2023/03/26 22:01:40
+2023-03-26 22:01:40.859  INFO 10964 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 30.77,  changed at - 2023/03/26 22:01:40
+2023-03-26 22:01:40.860  INFO 10964 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 72.03,  changed at - 2023/03/26 22:01:40
+2023-03-26 22:02:10.391  INFO 10964 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 28.92,  changed at - 2023/03/26 22:02:10
+2023-03-26 22:02:10.392  INFO 10964 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 33.85,  changed at - 2023/03/26 22:02:10
+2023-03-26 22:02:10.393  INFO 10964 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 79.23,  changed at - 2023/03/26 22:02:10
+2023-03-26 22:02:39.409  INFO 10964 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 31.81,  changed at - 2023/03/26 22:02:39
+2023-03-26 22:02:39.411  INFO 10964 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 37.24,  changed at - 2023/03/26 22:02:39
+2023-03-26 22:02:39.412  INFO 10964 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 87.15,  changed at - 2023/03/26 22:02:39
+2023-03-26 22:03:08.959  INFO 10964 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 34.99,  changed at - 2023/03/26 22:03:08
+2023-03-26 22:03:08.960  INFO 10964 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 40.96,  changed at - 2023/03/26 22:03:08
+2023-03-26 22:03:08.960  INFO 10964 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 95.87,  changed at - 2023/03/26 22:03:08
+2023-03-26 22:03:38.437  INFO 10964 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 38.49,  changed at - 2023/03/26 22:03:38
+2023-03-26 22:03:38.438  INFO 10964 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 45.06,  changed at - 2023/03/26 22:03:38
+2023-03-26 22:03:38.440  INFO 10964 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 105.46,  changed at - 2023/03/26 22:03:38
+2023-03-26 22:04:07.716  INFO 10964 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 42.34,  changed at - 2023/03/26 22:04:07
+2023-03-26 22:04:07.718  INFO 10964 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 49.57,  changed at - 2023/03/26 22:04:07
+2023-03-26 22:04:07.720  INFO 10964 --- [BKS-2] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 116.01,  changed at - 2023/03/26 22:04:07
+2023-03-26 22:04:37.697  INFO 10964 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 1, current  balance - 46.57,  changed at - 2023/03/26 22:04:37
+2023-03-26 22:04:37.699  INFO 10964 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 2, current  balance - 54.53,  changed at - 2023/03/26 22:04:37
+2023-03-26 22:04:37.700  INFO 10964 --- [BKS-1] com.bks.service.AccountServiceImpl       : client ID - 3, current  balance - 127.61,  changed at - 2023/03/26 22:04:37

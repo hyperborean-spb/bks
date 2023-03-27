@@ -1,3 +1,5 @@
+Оригинал задания: <https://krasnoslabodtsev.notion.site/Java-8cb66b18acc844dfbc0958c6f82e400c>
+
 **Структура таблиц БД**
 
 | Key type | Column | Type | Unique | Comment |
