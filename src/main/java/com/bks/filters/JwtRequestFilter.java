@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /*
-* Назначение - извлечь JWT из заголовка Authorization следующих запросов, определить его валидность, поместить его в SecurityContext  пользователя
+* Назначение - извлечь JWT из заголовка Authorization следующих запросов, установить  валидность, поместить  в SecurityContext  пользователя
 * */
 @Component
 @RequiredArgsConstructor

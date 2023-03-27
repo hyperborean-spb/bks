@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf().disable()
-		.authorizeRequests().antMatchers("/authenticate").permitAll().
+		.authorizeRequests().antMatchers("/authenticate", "/v3/api-docs", "/swagger-ui.html").permitAll().
 		anyRequest().authenticated().and().
 		exceptionHandling().and().sessionManagement()
 		// tells s.security don't bother making sessions
