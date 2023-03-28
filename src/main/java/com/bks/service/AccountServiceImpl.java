@@ -36,13 +36,10 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	private void initAccount(){
-		log.info("accountRepository.findAll() : {}", Arrays.toString(accountRepository.findAll().toArray()));
 		initAccounts = getAccounts();
-		log.info("initAccounts : {}", Arrays.toString(initAccounts.toArray()));
 		accountsToReach = initAccounts.stream()
 		.map(account -> account.getBalance().multiply(balanceRaiseLimit))
 		.collect(Collectors.toList());
-		log.info("accountsToReach : {}", Arrays.toString(accountsToReach.toArray()));
 		initAccounts.forEach(account->
 		log.info("client ID - {}, initial  balance - {},  started at - {}", account.getClient().getId(), account.getBalance().setScale(2, RoundingMode.HALF_UP), formatEventDate()));
 	}

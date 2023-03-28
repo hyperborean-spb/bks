@@ -1,7 +1,6 @@
 package com.bks.service;
 
 import com.bks.domain.Client;
-import com.bks.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
