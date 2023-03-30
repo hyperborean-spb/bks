@@ -54,6 +54,10 @@ spring:
     database-change-log-lock-table: bks_databasechangeloglock
     database-change-log-table: bks_databasechangelog
 
+  cache:
+    jcache:
+      config: classpath:/ehcache.xml
+
   #script-based initialization is performed by default only for embedded databases
   #to always initialize a database using scripts - schema.sql and data.sql USE spring.sql.init.mode=always
 #  sql:

@@ -14,6 +14,7 @@ import com.bks.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -50,6 +51,7 @@ public class ClientServiceImpl implements ClientService {
 		return clientRepository.findByBirthdateAfterOrderByBirthdate(pageable, birthdate);
 	};
 
+	@Cacheable(value = "clientByPhoneCache", key = "#phone"/*,condition = "#phone.equals(...)"*/)
 	@Override
 	public Client  getClientByPhone(String phone){
 		Phone p = phoneRepository.getFirstByPhone(phone).orElseThrow(() -> ClientException.of(messageCreator.createMessage(PHONE_NOT_FOUND)));

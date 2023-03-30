@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @SequenceGenerator(name = "sequence", sequenceName = "MY_CUSTOM_SEQ", allocationSize=1)
-public class Client {
+public class Client implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence")
@@ -35,4 +36,13 @@ public class Client {
 	@Column (nullable = false)
 	@Size (min = 8, max = 500, message = "Длина пароля вне диапазона [8 - 500]")
 	private String password;
+
+	@Override
+	public String toString() {
+		return "Client{" +
+		"id=" + id +
+		", name='" + name + '\'' +
+		", birthdate=" + birthdate +
+		'}';
+	}
 }
