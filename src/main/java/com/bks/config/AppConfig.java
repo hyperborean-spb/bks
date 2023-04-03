@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.Locale;
 
@@ -24,6 +25,7 @@ import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 @EnableScheduling
 @EnableAsync
 @EnableCaching
+@EnableTransactionManagement
 @ConditionalOnProperty(name = "scheduler.enabled", matchIfMissing = true)
 @ConfigurationProperties("app")
 public class AppConfig {
