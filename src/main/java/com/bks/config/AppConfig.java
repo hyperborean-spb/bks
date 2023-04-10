@@ -25,7 +25,8 @@ import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 @EnableScheduling
 @EnableAsync
 @EnableCaching
-@EnableTransactionManagement
+//нет необходимости - аннотация подключена по умолчанию благодаря значению spring.aop.proxy-target-class = true
+//@EnableTransactionManagement
 @ConditionalOnProperty(name = "scheduler.enabled", matchIfMissing = true)
 @ConfigurationProperties("app")
 public class AppConfig {
