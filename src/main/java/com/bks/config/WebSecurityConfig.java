@@ -20,12 +20,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private final UserDetailsService clientDetailsService;
+	//implemented in BksUserDetailsService
+	private final UserDetailsService userDetailsService;
 	private final JwtRequestFilter jwtRequestFilter;
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(clientDetailsService);
+		auth.userDetailsService(userDetailsService);
 	}
 
 	@Bean

@@ -15,10 +15,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static com.bks.service.support.ServiceConstants.INCORRECT_MAIL_OR_PASS;
 
@@ -33,13 +30,13 @@ public class AuthenticationController {
 	private final JwtUtil jwtTokenUtil;
 	private final BksUserDetailsService userDetailsService;
 
-	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+	@PostMapping("/authenticate")
 	@Operation(summary = "Аутентификация и формирование JWT в теле отклика")
 	@SecurityRequirement(name = "JWT")
 	public ResponseEntity<AuthenticationResponse> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws ClientException {
 
 		try {
-			/*способ аутентификации определен в WebSecurityConfig.configure()*/
+			/*способ аутентификации определен в WebSecurityConfig.configure(AuthenticationManagerBuilder auth) */
 			authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(authenticationRequest.getMail(), authenticationRequest.getPassword())
 				);
@@ -55,7 +52,7 @@ public class AuthenticationController {
 		return ResponseEntity.ok(new AuthenticationResponse(jwt));
 	}
 
-	@RequestMapping({ "/hello" })
+	@GetMapping({ "/hello" })
 	@Operation(summary = "изначально защищенная тестовая точка для проверки корректности работы JWT")
 	@SecurityRequirement(name = "JWT")
 	public String firstPage() {
