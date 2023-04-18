@@ -39,12 +39,21 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             username = jwtUtil.extractUsername(jwt);
         }
 
-
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
-            if (jwtUtil.validateToken(jwt, userDetails)) {
+            /*
+            * зачем нам собственно userDetails?
+            * -  валидация токена проводится путем
+            * а) сравнения имени пользователя из токена и userDetails
+            * б) проверки isExpired времени жизни токена
+            * но userDetails формируется из username, передаваемого в userDetailsService.loadUserByUsername
+            * в нашем случае полученного из токена
+            * поэтому имя пользователя из токена и userDetails заведомо равны !
+            * */
+            //if (jwtUtil.validateToken(jwt, userDetails)) {
+			if (!jwtUtil.isTokenExpired(jwt)) {
 
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
