@@ -48,7 +48,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		exceptionHandling().and().sessionManagement()
 		// tells s.security don't bother making sessions
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		// set security context per each request
+		/* set security context per each request
+			вероятно, UsernamePasswordAuthenticationFilter однозначно связан с authenticationManager.authenticate(new UsernamePasswordAuthenticationToken...)
+		* */
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 }
