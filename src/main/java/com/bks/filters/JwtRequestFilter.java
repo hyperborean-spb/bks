@@ -39,8 +39,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             username = jwtUtil.extractUsername(jwt);
         }
 
+	/* роль этого фильтра заключается в проверке передачи токена, извлечении имени пользователя
+        * и заполнении контекста безопасности токеном UsernamePasswordAuthenticationToken,
+        * сформированном из UserDetails, поэтому UserDetails формируется лишь в случае пустого контекста
+	* */
+    
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
             /*
